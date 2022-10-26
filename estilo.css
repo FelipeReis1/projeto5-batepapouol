@@ -1,0 +1,110 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+.containerPrincipal {
+  width: 375px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.menuSuperior {
+  width: 375px;
+  height: 80px;
+  position: fixed;
+  justify-content: space-around;
+  align-items: center;
+  top: 0;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+}
+.iconesSuperior {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 16px;
+}
+.iconesSuperior img {
+  width: 75px;
+  height: 53px;
+  margin-right: 150px;
+}
+.iconesSuperior ion-icon {
+  width: 45px;
+  height: 45px;
+}
+.campoMensagemInferior {
+  width: 375px;
+  height: 80px;
+  box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  background-color: #ffffff;
+}
+.campoMensagemInferior ion-icon {
+  width: 26px;
+  height: 26px;
+  margin-right: 17px;
+}
+.campoMensagemInferior .escrever {
+  height: 30px;
+  margin-left: 17px;
+  border-style: none;
+}
+::placeholder {
+  font-family: "Roboto";
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: #000000;
+}
+
+.containerMensagens {
+  display: flex;
+  flex-direction: column;
+  height: 667px;
+  margin-top: 80px;
+  background-color: #f3f3f3;
+}
+p {
+  width: 370px;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  margin-left: 8px;
+  margin-right: 8px;
+  color: #000000;
+}
+strong {
+  font-weight: bold;
+}
+span {
+  color: #aaaaaa;
+}
+
+.mensagem {
+  width: 375px;
+  min-height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 2px;
+  margin-top: 4px;
+  overflow-wrap: break-word;
+}
+.cinza {
+  background-color: #dcdcdc;
+}
+.rosa {
+  background-color: #ffdede;
+}
+.branco {
+  background: #ffffff;
+}

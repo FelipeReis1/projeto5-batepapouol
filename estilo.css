@@ -63,11 +63,14 @@ body {
   line-height: 21px;
   color: #000000;
 }
+input:focus {
+  outline: none;
+}
 
 .containerMensagens {
   display: flex;
+  width: 375px;
   flex-direction: column;
-  height: 667px;
   margin-top: 80px;
   background-color: #f3f3f3;
 }

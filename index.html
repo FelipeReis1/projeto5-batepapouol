@@ -25,39 +25,19 @@
           ></ion-icon>
         </div>
       </div>
-      <ul class="containerMensagens">
-        <li class="mensagem cinza">
-          <p><span>(09:21:45)</span> <strong>João</strong> entra na sala...</p>
-        </li>
-        <li class="mensagem branco">
-          <p>
-            <span>(09:22:28)</span> <strong>João</strong> para
-            <strong>TODOS</strong>: Bom dia
-          </p>
-        </li>
-        <li class="mensagem branco">
-          <p>
-            <span>(09:22:38)</span> <strong>Maria</strong> para João: Oi João :)
-          </p>
-        </li>
-        <li class="mensagem rosa">
-          <p>
-            <span>(09:22:28)</span> <strong>João</strong> reservadamente para
-            <strong>Maria</strong>: Oi gatinha, quer tc?
-          </p>
-        </li>
-        <li class="mensagem cinza">
-          <p><span>(09:22:58)</span> <strong>Maria</strong> sai da sala...</p>
-        </li>
-      </ul>
+      <ul class="containerMensagens"></ul>
       <div class="campoMensagemInferior">
         <input
-          placeholder="Escreva aqui..."
           class="escrever"
           type="text"
-        /><ion-icon name="paper-plane-outline"></ion-icon>
+          placeholder="Escreva aqui..."
+        /><ion-icon
+          onclick="adicionarMensagem()"
+          name="paper-plane-outline"
+        ></ion-icon>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
     <script
       type="module"

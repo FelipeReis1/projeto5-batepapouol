@@ -72,6 +72,7 @@ input:focus {
   width: 375px;
   flex-direction: column;
   margin-top: 80px;
+  margin-bottom: 80px;
   background-color: #f3f3f3;
 }
 p {

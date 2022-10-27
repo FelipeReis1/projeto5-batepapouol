@@ -15,22 +15,30 @@ function deuErrado() {
   nome = prompt("Qual o seu nome?");
 }
 
-setInterval(verificaStatus, 5000);
-function verificaStatus() {
+setInterval(verificaStatusUsuario, 5000);
+function verificaStatusUsuario() {
   axios.post("https://mock-api.driven.com.br/api/v6/uol/status", {
     name: nome,
   });
 }
 
-const promessa = axios.get(
-  "https://mock-api.driven.com.br/api/v6/uol/messages"
-);
+function refreshMensagens() {
+  promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
+  promessa.then(mensagensChegaram);
+}
+setInterval(refreshMensagens, 3000);
+
+let promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
+
 promessa.then(mensagensChegaram);
 
 function mensagensChegaram(resposta) {
   mensagens = resposta.data;
-  console.log(mensagens);
+  //console.log(mensagens);
   renderizarMensagem();
+  const ultimaMsg = document.querySelector(".containerMensagens").lastChild;
+  //console.log(ultimaMsg);
+  ultimaMsg.scrollIntoView();
 }
 
 function renderizarMensagem() {
@@ -47,9 +55,11 @@ function renderizarMensagem() {
       <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> para <strong>${msg.to}: </strong> ${msg.text}</p>
     </li>`;
     } else if (msg.type === "private_message") {
-      meuContainerMensagens.innerHTML += `<li class="mensagem rosa">
+      if (msg.from === msg.to) {
+        meuContainerMensagens.innerHTML += `<li class="mensagem rosa">
     <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> reservadamente para <strong>${msg.to}: </strong> ${msg.text}</p>
   </li>`;
+      }
     }
   }
 }

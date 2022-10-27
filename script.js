@@ -10,17 +10,26 @@ seuNome.catch(deuErrado);
 function bemVindo() {
   alert(`Seja bem-vindo, ${nome}`);
 }
+
 function deuErrado() {
   alert("Ops, algo deu errado, digite seu nome novamente");
   nome = prompt("Qual o seu nome?");
 }
 
-setInterval(verificaStatusUsuario, 5000);
+function usuarioNaoEstaNaSala() {
+  alert(
+    "Ops, você não está mais na sala, digite seu nome novamente para entrar"
+  );
+  window.location.reload();
+}
+
 function verificaStatusUsuario() {
   axios.post("https://mock-api.driven.com.br/api/v6/uol/status", {
     name: nome,
   });
+  return true;
 }
+setInterval(verificaStatusUsuario, 5000);
 
 function refreshMensagens() {
   promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
@@ -29,15 +38,12 @@ function refreshMensagens() {
 setInterval(refreshMensagens, 3000);
 
 let promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
-
 promessa.then(mensagensChegaram);
-
 function mensagensChegaram(resposta) {
   mensagens = resposta.data;
-  //console.log(mensagens);
+  console.log(mensagens);
   renderizarMensagem();
   const ultimaMsg = document.querySelector(".containerMensagens").lastChild;
-  //console.log(ultimaMsg);
   ultimaMsg.scrollIntoView();
 }
 
@@ -64,16 +70,22 @@ function renderizarMensagem() {
   }
 }
 
-/*function adicionarMensagem() {
+function adicionarMensagem() {
   const mensagem = document.querySelector(".escrever").value;
   const novaMensagem = {
     from: nome,
-    to: "",
+    to: "Todos",
     text: mensagem,
-    type: "",
-    time: "",
+    type: "message",
   };
-  mensagens.push(novaMensagem);
-  renderizarMensagem();
-  console.log(mensagens);
-}*/
+  if (verificaStatusUsuario() === true) {
+    axios.post(
+      "https://mock-api.driven.com.br/api/v6/uol/messages",
+      novaMensagem
+    );
+    renderizarMensagem();
+  }
+  if (verificaStatusUsuario() === false) {
+    usuarioNaoEstaNaSala();
+  }
+}

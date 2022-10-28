@@ -87,11 +87,12 @@ function adicionarMensagem() {
       "https://mock-api.driven.com.br/api/v6/uol/messages",
       novaMensagem
     );
-    envio.then();
-    renderizarMensagem();
-    apagaInput.value = "";
     const ultimaMsg = document.querySelector(".containerMensagens").lastChild;
-    ultimaMsg.scrollIntoView();
+    envio.then(
+      renderizarMensagem,
+      (apagaInput.value = ""),
+      ultimaMsg.scrollIntoView()
+    );
   }
   if (verificaStatusUsuario() === false) {
     usuarioNaoEstaNaSala();

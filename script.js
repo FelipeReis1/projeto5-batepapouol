@@ -12,15 +12,21 @@ function bemVindo() {
 }
 
 function deuErrado() {
-  alert("Ops, algo deu errado, digite seu nome novamente");
+  alert(
+    "Ops, alguém já está usando esse nome, digite um novo nome para ingressar ao chat!"
+  );
   nome = prompt("Qual o seu nome?");
 }
 
 function usuarioNaoEstaNaSala() {
-  alert(
-    "Ops, você não está mais na sala, digite seu nome novamente para entrar"
-  );
-  window.location.reload();
+  if (verificaStatusUsuario !== true) {
+    alert(
+      "Ops, você não está mais na sala, digite seu nome novamente para entrar"
+    );
+    window.location.reload();
+  } else {
+    return;
+  }
 }
 
 function verificaStatusUsuario() {
@@ -41,10 +47,7 @@ let promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
 promessa.then(mensagensChegaram);
 function mensagensChegaram(resposta) {
   mensagens = resposta.data;
-  console.log(mensagens);
   renderizarMensagem();
-  const ultimaMsg = document.querySelector(".containerMensagens").lastChild;
-  ultimaMsg.scrollIntoView();
 }
 
 function renderizarMensagem() {
@@ -71,7 +74,8 @@ function renderizarMensagem() {
 }
 
 function adicionarMensagem() {
-  const mensagem = document.querySelector(".escrever").value;
+  let mensagem = document.querySelector(".escrever").value;
+  let apagaInput = document.querySelector(".escrever");
   const novaMensagem = {
     from: nome,
     to: "Todos",
@@ -79,11 +83,15 @@ function adicionarMensagem() {
     type: "message",
   };
   if (verificaStatusUsuario() === true) {
-    axios.post(
+    const envio = axios.post(
       "https://mock-api.driven.com.br/api/v6/uol/messages",
       novaMensagem
     );
+    envio.then();
     renderizarMensagem();
+    apagaInput.value = "";
+    const ultimaMsg = document.querySelector(".containerMensagens").lastChild;
+    ultimaMsg.scrollIntoView();
   }
   if (verificaStatusUsuario() === false) {
     usuarioNaoEstaNaSala();

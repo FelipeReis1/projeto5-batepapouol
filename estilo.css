@@ -50,6 +50,9 @@ body {
   height: 26px;
   margin-right: 17px;
 }
+ion-icon:hover {
+  cursor: pointer;
+}
 .campoMensagemInferior .escrever {
   height: 30px;
   margin-left: 17px;

@@ -64,11 +64,9 @@ function renderizarMensagem() {
       <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> para <strong>${msg.to}: </strong> ${msg.text}</p>
     </li>`;
     } else if (msg.type === "private_message") {
-      if (msg.from === msg.to) {
-        meuContainerMensagens.innerHTML += `<li class="mensagem rosa" data-test="message">
+      meuContainerMensagens.innerHTML += `<li class="mensagem rosa" data-test="message">
     <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> reservadamente para <strong>${msg.to}: </strong> ${msg.text}</p>
   </li>`;
-      }
     }
   }
 }

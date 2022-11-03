@@ -56,16 +56,16 @@ function renderizarMensagem() {
   for (let i = 0; i < mensagens.length; i++) {
     let msg = mensagens[i];
     if (msg.type === "status") {
-      meuContainerMensagens.innerHTML += `<li class="mensagem cinza">
+      meuContainerMensagens.innerHTML += `<li class="mensagem cinza" data-test="message">
       <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> para <strong>${msg.to}: </strong> ${msg.text}</p>
     </li>`;
     } else if (msg.type === "message") {
-      meuContainerMensagens.innerHTML += `<li class="mensagem branco">
+      meuContainerMensagens.innerHTML += `<li class="mensagem branco" data-test="message">
       <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> para <strong>${msg.to}: </strong> ${msg.text}</p>
     </li>`;
     } else if (msg.type === "private_message") {
       if (msg.from === msg.to) {
-        meuContainerMensagens.innerHTML += `<li class="mensagem rosa">
+        meuContainerMensagens.innerHTML += `<li class="mensagem rosa data-test="message"">
     <p><span>(${msg.time}) </span> <strong>${msg.from}</strong> reservadamente para <strong>${msg.to}: </strong> ${msg.text}</p>
   </li>`;
       }
